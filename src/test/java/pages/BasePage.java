@@ -10,7 +10,7 @@ public abstract class BasePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public final String BASE_URL = "https://www.saucedemo.com/";
+    public final String BASE_URL = "https://tms9-dev-ed.develop.my.salesforce.com/";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
