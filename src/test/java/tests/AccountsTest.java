@@ -1,10 +1,7 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class AccountsTest extends BaseTest {
 
@@ -13,7 +10,6 @@ public class AccountsTest extends BaseTest {
     public void checkCreateAccount() {
         loginPage.open(driver);
         loginPage.login("tborodich@tms.sandbox", "Password001");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://tms9-dev-ed.develop.lightning.force.com/lightning/o/Account/new");
         newAccountModal.createAccount("Test", "Hot", "3754444444", "86585", "75421578",
                 "testest.com", "testMytest.com", "BY", "Prospect", "Private", "100", "Banking",
