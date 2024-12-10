@@ -1,22 +1,61 @@
 package tests;
 
+import com.github.javafaker.Faker;
+import dto.Account;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
+import static dto.AccountFactory.getAccount;
+
 public class AccountsTest extends BaseTest {
+
+    Faker faker = new Faker();
+
+    Account account1 = Account.builder()
+            .name(faker.company().name())
+            .accountNumber(faker.number().digits(5))
+            .rating("Hot")
+            .phone(faker.phoneNumber().phoneNumber())
+            .fax(faker.phoneNumber().cellPhone())
+            .accountNumber(faker.number().digits(5))
+            .website("https://testLiza.com")
+            .accountSite("https://testLiza.com")
+            .tickerSymbol("BY")
+            .type("Prospect")
+            .ownership("Public")
+            .industry("Banking")
+            .employees(faker.number().digits(1))
+            .annualRevenue(faker.number().digits(1))
+            .sicCode(faker.number().digits(5))
+            .street(faker.address().streetName())
+            .shippingStreet(faker.address().streetName())
+            .billingCity(faker.address().city())
+            .billingState(faker.address().state())
+            .shippingCity(faker.address().city())
+            .shippingState(faker.address().state())
+            .billingZip(faker.address().zipCode())
+            .billingCountry(faker.address().country())
+            .shippingZip(faker.address().zipCode())
+            .shippingCountry(faker.address().country())
+            .customerPriority("Low")
+            .sla("Silver")
+            .slaExpirationDate("15.02.2025")
+            .slaSerialNumber(faker.number().digits(5))
+            .numberOfLocations(faker.number().digits(1))
+            .upsellOpportunity("No")
+            .active("No")
+            .description(faker.lorem().sentence(15))
+            .build();
 
     @Test
     @Description("Проверка создания аккаунта, заполнив все поля")
     public void checkCreateAccount() {
-        loginPage.open(driver);
-        loginPage.login("tborodich@tms.sandbox", "Password001");
-        driver.get("https://tms9-dev-ed.develop.lightning.force.com/lightning/o/Account/new");
-        newAccountModal.createAccount("Test", "Hot", "3754444444", "86585", "75421578",
-                "testest.com", "testMytest.com", "BY", "Prospect", "Private", "100", "Banking",
-                "50", "7542", "Street Chkalova", "prospect Nezavisimosti", "Minsk", "State",
-                "Minsk", "State", "65568", "Belarus", "78965", "Belarus", "Low",
-                "Silver", "14.02.2025", "777777", "1", "No", "No",
-                "Test description");
-        newAccountModal.clickSaveButton();
+        loginPage.open()
+                .isPageOpened()
+                .login("tborodich@tms.sandbox", "Password001");
+        newAccountModal.open()
+                .isPageOpened();
+        newAccountModal.createAccount(account1);
+        //newAccountModal.clickSaveButton();
     }
 }

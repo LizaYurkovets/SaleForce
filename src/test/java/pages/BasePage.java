@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.internal.shadowed.jackson.databind.ser.Serializers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,4 +17,9 @@ public abstract class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
+
+
+    public abstract BasePage isPageOpened();
+
+    public abstract BasePage open();
 }
