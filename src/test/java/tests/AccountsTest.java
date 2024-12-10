@@ -5,7 +5,6 @@ import dto.Account;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-import static dto.AccountFactory.getAccount;
 
 public class AccountsTest extends BaseTest {
 
@@ -56,6 +55,6 @@ public class AccountsTest extends BaseTest {
         newAccountModal.open()
                 .isPageOpened();
         newAccountModal.createAccount(account1);
-        //newAccountModal.clickSaveButton();
+        newAccountModal.clickSaveButton();
     }
 }
