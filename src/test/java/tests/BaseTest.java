@@ -28,7 +28,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            options.addArguments("--disable-notification");
+            options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             driver = new EdgeDriver();
@@ -40,7 +40,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         newAccountModal = new NewAccountModal(driver);
         loginPage = new LoginPage(driver);
-
     }
 
     @AfterMethod(alwaysRun = true)
